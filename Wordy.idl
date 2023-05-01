@@ -1,0 +1,31 @@
+module wordy_idl {
+
+    // Exception definitions
+    exception InvalidPasswordException {};
+    exception NoUserFoundException {};
+    exception LoggedInException {};
+    exception NoPlayersJoinedException {};
+    exception NoGameFoundException {};
+
+    // Definitions for the list of strings pertaining to the best players and longest words
+    typedef sequence<string> bestPlayers;
+    typedef sequence<string> longestWords;
+
+
+    // Interface for the Game Menu Servant object
+    interface GameMenuServant {
+
+
+    void logIn(in string username, in string password) raises (InvalidPasswordException, NoUserFoundException,
+        LoggedInException);
+
+
+    void startGame(in long userId) raises (NoPlayersJoinedException);
+
+    long joinGame(in long userId) raises (NoGameFoundException);
+
+    bestPlayers getBestPlayers();
+
+    longestWords getLongestWords();
+    };
+};

@@ -87,8 +87,13 @@ public class Alphabet {
     private static int generateRandomVowelCount() {
         long seed = System.currentTimeMillis();
         Random rng = new Random(seed);
+        int out;
 
-        return rng.nextInt(5, 8);
+
+        do {
+            out = rng.nextInt(9);
+        } while (out < 5);
+        return out;
     }
 
     public static void main(String[] args) {
