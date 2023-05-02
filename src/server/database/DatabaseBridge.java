@@ -8,4 +8,5 @@ package server.database;
  */
 public class DatabaseBridge {
 
+    //TODO: Implement the DatabaseBridge class.
 }
