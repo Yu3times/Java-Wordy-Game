@@ -4,6 +4,7 @@ module wordy_idl {
     exception InvalidPasswordException {};
     exception NoUserFoundException {};
     exception LoggedInException {};
+    exception IncompleteCredentialsException {};
     exception NoPlayersJoinedException {};
     exception NoGameFoundException {};
     exception InvalidWordException {};
@@ -19,7 +20,7 @@ module wordy_idl {
     interface GameMenuServant {
 
     void logIn(in string username, in string password) raises (InvalidPasswordException, NoUserFoundException,
-        LoggedInException);
+        LoggedInException, IncompleteCredentialsException);
 
     void startGame(in long userId) raises (NoPlayersJoinedException);
 

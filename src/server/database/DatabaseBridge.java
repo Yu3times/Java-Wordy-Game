@@ -1,5 +1,7 @@
 package server.database;
 
+import javax.xml.crypto.Data;
+import java.sql.*;
 
 /**
  * The DatabaseBridge is a class meant to be used by the server in initiating a connection to the
@@ -8,5 +10,12 @@ package server.database;
  */
 public class DatabaseBridge {
 
+    private Connection connection;
     //TODO: Implement the DatabaseBridge class.
+
+    public DatabaseBridge() throws SQLException {
+        connection = DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/wordy", "root", "");
+    }
+
 }

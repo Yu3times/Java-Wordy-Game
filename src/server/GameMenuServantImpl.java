@@ -1,5 +1,6 @@
 package server;
 
+import server.database.DatabaseBridge;
 import wordy_idl.*;
 
 /**
@@ -15,6 +16,7 @@ public class GameMenuServantImpl extends GameMenuServantPOA{
     @Override
     public void logIn(String username, String password)
             throws InvalidPasswordException, NoUserFoundException, LoggedInException {
+
 
 
     }

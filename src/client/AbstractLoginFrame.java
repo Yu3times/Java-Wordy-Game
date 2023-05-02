@@ -1,9 +1,12 @@
 package client;
 
+import wordy_idl.*;
+
 import javax.swing.*;
 
 abstract class AbstractLoginFrame {
 
+    protected GameMenuServant gameMenuServant;
     protected JPanel loginPanel;
     protected JPanel loginCenterPanel;
     protected JPasswordField passwordField;

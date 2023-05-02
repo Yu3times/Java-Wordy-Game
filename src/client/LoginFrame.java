@@ -3,13 +3,15 @@ package client;
 import javax.swing.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import wordy_idl.*;
 
 public class LoginFrame extends AbstractLoginFrameFirstImpl{
 
     private JFrame loginFrame;
 
-    protected LoginFrame(String title) {
+    protected LoginFrame(String title, GameMenuServant gameMenuServant) {
 
+        this.gameMenuServant = gameMenuServant;
         loginFrame = new JFrame(title);
         loginFrame.addWindowListener(new WindowAdapter() {
             @Override
