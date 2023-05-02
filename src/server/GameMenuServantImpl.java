@@ -10,6 +10,7 @@ import wordy_idl.*;
  */
 public class GameMenuServantImpl extends GameMenuServantPOA{
 
+    //TODO: Implement the methods in the Game menu servant.
 
     @Override
     public void logIn(String username, String password)

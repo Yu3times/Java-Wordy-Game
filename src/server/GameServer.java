@@ -14,6 +14,7 @@ import java.util.Properties;
 public class GameServer {
 
     public static void main(String[] args) {
+        //TODO: Have the server set everything up for the ORB.
 
     }
 
