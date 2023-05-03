@@ -5,9 +5,8 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import wordy_idl.*;
 
-public class LoginFrame extends AbstractLoginFrameFirstImpl{
+public class LoginFrame extends AbstractLoginFrameImpl {
 
-    private JFrame loginFrame;
 
     protected LoginFrame(String title, GameMenuServant gameMenuServant) {
 

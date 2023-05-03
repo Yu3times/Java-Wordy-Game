@@ -6,6 +6,7 @@ import javax.swing.*;
 
 abstract class AbstractLoginFrame {
 
+    protected JFrame loginFrame;
     protected GameMenuServant gameMenuServant;
     protected JPanel loginPanel;
     protected JPanel loginCenterPanel;

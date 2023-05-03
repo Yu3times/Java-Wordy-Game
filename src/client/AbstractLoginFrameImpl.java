@@ -1,21 +1,20 @@
 package client;
 
-import wordy_idl.IncompleteCredentialsException;
-import wordy_idl.InvalidPasswordException;
-import wordy_idl.LoggedInException;
-import wordy_idl.NoUserFoundException;
+import wordy_idl.*;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-abstract class AbstractLoginFrameFirstImpl extends AbstractLoginFrame{
+abstract class AbstractLoginFrameImpl extends AbstractLoginFrame{
 
     public void implementButtonListeners() {
 
         exitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
+                loginFrame.dispose();
                 System.exit(0);
             }
         });
@@ -25,6 +24,7 @@ abstract class AbstractLoginFrameFirstImpl extends AbstractLoginFrame{
             public void actionPerformed(ActionEvent e) {
                 try {
                     gameMenuServant.logIn(usernameField.getText(), passwordField.getText());
+                    //TODO: Continue the process when user tries to log in.
                 } catch (InvalidPasswordException ex) {
                     JOptionPane.showMessageDialog(
                             null,

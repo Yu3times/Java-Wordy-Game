@@ -4,9 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.sql.SQLOutput;
 import java.util.ArrayList;
-import java.util.Random;
 
 public class Words {
 
@@ -30,6 +28,9 @@ public class Words {
 
 
     public static void main(String[] args) {
+        for (String word: Words.WORDLIST) {
+            System.out.println(word);
+        }
 
     }
 
