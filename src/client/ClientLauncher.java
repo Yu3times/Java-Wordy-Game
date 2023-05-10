@@ -18,7 +18,7 @@ public class ClientLauncher {
 
             System.out.println("Successfully initiated connection with ORB.");
 
-            LoginFrame loginFrame = new LoginFrame("Wordy Login", gameMenuServant);
+            LoginFrame loginFrame = new LoginFrame("Wordy Login", gameMenuServant, ncRef);
             loginFrame.launchFrame();
         } catch (InvalidName e) {
             e.printStackTrace();
@@ -31,6 +31,9 @@ public class ClientLauncher {
         } catch (Exception e) {
             System.out.println("A connection cannot be established; please try again later");
         }
+
+
+        System.out.println("End of client program reached.");
 
 
     }

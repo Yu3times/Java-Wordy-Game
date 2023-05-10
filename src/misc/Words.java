@@ -26,6 +26,10 @@ public class Words {
         }
     }
 
+    public static boolean isValidWord(String word) {
+        return WORDLIST.contains(word);
+    }
+
 
     public static void main(String[] args) {
         for (String word: Words.WORDLIST) {

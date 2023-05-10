@@ -1,104 +1,38 @@
 package misc;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 public class Alphabet {
 
-    private static final char[] ALPHABET = new char[] {
-            'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
-            'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
-    };
-
-    private static final char[] VOWELS;
-    private static final char[] CONSONANTS;
-
-    static {
-        VOWELS = new char[] { ALPHABET[0], ALPHABET[4], ALPHABET[8], ALPHABET[14], ALPHABET[20]};
-        CONSONANTS = new char[ALPHABET.length - 5];
-        int i = 0;
-        for (char letter: ALPHABET) {
-            if (letter == 'a' || letter == 'e' || letter == 'i' || letter == 'o' || letter == 'u') {
-                continue;
-            }
-            CONSONANTS[i] = letter;
-            i++;
+    public static String generateRandomLetters() {
+        Random random = new Random();
+        String vowels = "aeiou";
+        String consonants = "bcdfghjklmnpqrstvwxyz";
+        int numVowels = random.nextInt(3) + 5; // generate a random number of vowels between 5 and 7
+        int numConsonants = 17 - numVowels;
+        List<Character> letters = new ArrayList<>();
+        // add vowels and consonants to the list
+        for (int i = 0; i < numVowels; i++) {
+            letters.add(vowels.charAt(random.nextInt(vowels.length())));
         }
-    }
-
-    public static char getRandomLetter() {
-        long seed = System.currentTimeMillis();
-        Random rng = new Random(seed);
-        int max = ALPHABET.length;
-        int index = rng.nextInt(max);
-        return ALPHABET[index];
-    }
-
-
-    private static char getRandomVowel() {
-        long seed = System.currentTimeMillis();
-        Random rng = new Random(seed);
-        int max = VOWELS.length;
-        int randomIndex = rng.nextInt(max);
-        return VOWELS[randomIndex];
-    }
-
-    private static char getRandomVowel(long seed) {
-        Random rng = new Random(seed);
-        int max = VOWELS.length;
-        int randomIndex = rng.nextInt(max);
-        return VOWELS[randomIndex];
-    }
-
-    private static char getRandomConsonant(long seed) {
-        Random rng = new Random(seed);
-        int max = CONSONANTS.length;
-        int randomIndex = rng.nextInt(max);
-        return CONSONANTS[randomIndex];
-    }
-
-    private static char getRandomConsonant() {
-        long seed = System.currentTimeMillis();
-        Random rng = new Random(seed);
-        int max = CONSONANTS.length;
-        int randomIndex = rng.nextInt(max + 1);
-        return CONSONANTS[randomIndex];
-    }
-
-
-    public static ArrayList<Character> getRandomLetters() {
-        ArrayList<Character> letters = new ArrayList<>();
-        int vowelCount = generateRandomVowelCount();
-        int consonantCount = 17 - vowelCount;
-
-        for (int i = 0; i < vowelCount; i++) {
-            Character letter = getRandomVowel(System.currentTimeMillis() + i);
-            letters.add(letter);
+        for (int i = 0; i < numConsonants; i++) {
+            letters.add(consonants.charAt(random.nextInt(consonants.length())));
         }
-
-        for (int i = 0; i < consonantCount; i++) {
-            Character letter = getRandomConsonant(System.currentTimeMillis() + i);
-            letters.add(letter);
+        // shuffle the letters
+        Collections.shuffle(letters, random);
+        // create the final string
+        StringBuilder sb = new StringBuilder();
+        for (char c : letters) {
+            sb.append(c);
         }
-
-        return letters;
-    }
-
-    private static int generateRandomVowelCount() {
-        long seed = System.currentTimeMillis();
-        Random rng = new Random(seed);
-        int out;
-
-
-        do {
-            out = rng.nextInt(9);
-        } while (out < 5);
-        return out;
+        return sb.toString();
     }
 
     public static void main(String[] args) {
-        for (Character letter: getRandomLetters().toArray(new Character[0])) {
-            System.out.println(letter);
-        }
+        String randomLetters = generateRandomLetters();
+        System.out.println(randomLetters);
     }
 }

@@ -1,5 +1,6 @@
 
 -- If the database already exists, just delete it.--------------------------------
+-- Uncomment this statement if necessary.
 DROP DATABASE wordy;
 
 -- Create the database. ----------------------------------------------------------
@@ -24,6 +25,15 @@ CREATE TABLE game(
                      num_rounds INT,
                      PRIMARY KEY(game_id));
 
+
+-- Create the rounds table--------------------------------------------------------
+CREATE TABLE round(
+    round_num INT,
+    game_id INT NOT NULL,
+    player_id INT NOT NULL,
+    word_score INT,
+    PRIMARY KEY(round_num, game_id));
+
 -- Create the player_status table-------------------------------------------------
 CREATE TABLE player_status(
                               status_id INT AUTO_INCREMENT,
@@ -39,6 +49,7 @@ CREATE TABLE game_status(
 -- Create the longest_word table--------------------------------------------------
 CREATE TABLE longest_word(
                              word_id INT AUTO_INCREMENT,
+                             player_id INT NOT NULL,
                              word VARCHAR(30),
                              PRIMARY KEY(word_id));
 
@@ -54,6 +65,18 @@ ALTER TABLE player ADD FOREIGN KEY(game_id)
 ALTER TABLE game ADD FOREIGN KEY(game_status)
     REFERENCES game_status(status_id)
     ON DELETE RESTRICT ON UPDATE CASCADE;
+
+ALTER TABLE longest_word ADD FOREIGN KEY(player_id)
+    REFERENCES player(player_id) ON DELETE RESTRICT
+    ON UPDATE RESTRICT;
+
+ALTER TABLE round ADD FOREIGN KEY(game_id)
+    REFERENCES game(game_id)
+    ON DELETE CASCADE ON UPDATE RESTRICT;
+
+ALTER TABLE round ADD FOREIGN KEY(player_id)
+    REFERENCES player(player_id)
+    ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 -- Start filling up data for some of the tables-----------------------------------
 INSERT INTO player_status(status) VALUES('Online');

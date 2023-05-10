@@ -1,5 +1,7 @@
 package client;
 
+import org.omg.CORBA.ORB;
+import org.omg.CosNaming.NamingContextExt;
 import wordy_idl.*;
 
 import javax.swing.*;
@@ -17,6 +19,7 @@ abstract class AbstractLoginFrame {
     protected JButton exitButton;
     protected JLabel usernameLabel;
     protected JLabel passwordLabel;
+    protected NamingContextExt ncRef;
 
     public abstract void implementButtonListeners();
 }

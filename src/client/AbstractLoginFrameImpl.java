@@ -1,5 +1,6 @@
 package client;
 
+import jdk.nashorn.internal.scripts.JO;
 import wordy_idl.*;
 
 import javax.swing.*;
@@ -23,8 +24,23 @@ abstract class AbstractLoginFrameImpl extends AbstractLoginFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    gameMenuServant.logIn(usernameField.getText(), passwordField.getText());
-                    //TODO: Continue the process when user tries to log in.
+                    if (usernameField.getText().equals("") || passwordField.getText().equals(""))
+                        throw new IncompleteCredentialsException();
+                    int player_id = gameMenuServant.logIn(usernameField.getText(), passwordField.getText());
+                    JOptionPane.showMessageDialog(
+                            null,
+                            "Successfully logged in as " + usernameField.getText(),
+                             "Logged in",
+                            JOptionPane.INFORMATION_MESSAGE
+                    );
+
+                    loginFrame.setVisible(false);
+                    new GameMenuFrame("Welcome to Wordy!", gameMenuServant, loginFrame,
+                            player_id, ncRef).launchFrame();
+
+                    usernameField.setText("");
+                    passwordField.setText("");
+
                 } catch (InvalidPasswordException ex) {
                     JOptionPane.showMessageDialog(
                             null,
